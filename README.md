@@ -15,7 +15,7 @@ This makes it possible to model correlated and systematic failures that cannot b
 
 ## Supported Fault Models
 
-We **only** support the augmented injection mode `FLIP_SINGLE_BIT`. For this mode, common-mode injection is enabled, the fault pattern is applied **identically across all SMs**, ensuring deterministic behavior for a given configuration. While in theory functional, we do not advise to use any of the other fault models within NVBitFI, as we did not evaluate them in coexistance with the multi-sm failure
+We **only** support the augmented injection mode `FLIP_SINGLE_BIT`. For this mode, common-mode injection is enabled, the fault pattern is applied **identically across all SMs**, ensuring deterministic behavior for a given configuration. While, in theory, functional, we do not advise to use any of the other fault models within NVBitFI, as we did not evaluate them in coexistance with the multi-sm failure
 
 ## Use Cases
 
@@ -140,5 +140,6 @@ NVBitFI benefits from the featured offered by NVBit. It can run on newer GPUs (e
 # Contributing to NVBitFI
 
 If you are interested in contributing to NVBitFI, please initialize a [Pull Request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) and complete the [Contributor License Agreement](https://www.apache.org/licenses/icla.pdf).
+
 
 
