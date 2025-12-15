@@ -1,0 +1,4 @@
+Device 0 (NVIDIA Tegra X2) is being used
+memory: 7.6663 GB ECC off 2 SMs x1300000
+#CTAs=10, nreps=10, threads/CTA=1024
+global sum = 102400 
