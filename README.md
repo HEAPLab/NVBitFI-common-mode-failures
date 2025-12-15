@@ -1,3 +1,35 @@
+## Common-Mode Fault Injection Extension
+
+This repository extends **NVBitFI** with support for **common-mode fault injection across multiple Streaming Multiprocessors (SMs)**. All configuration rules for NVBitFI remain the same, view the original documentation below.
+
+### What This Adds
+
+The original NVBitFI framework injects faults at a single dynamic instruction instance, which typically affects only one SM. This extension enables injection of **the same fault at the same logical execution point on all SMs**, allowing the study of **common-mode hardware failures**.
+
+In common-mode injection:
+- The **same destination register** is targeted on each SM
+- The **same bit position** is flipped (e.g., for `FLIP_SINGLE_BIT`)
+- Injection occurs at a **single, well-defined program location**
+
+This makes it possible to model correlated and systematic failures that cannot be captured with single-event fault injection.
+
+### Supported Fault Models
+
+We **only** support the augmented injection mode `FLIP_SINGLE_BIT`. For this mode, common-mode injection is enabled, the fault pattern is applied **identically across all SMs**, ensuring deterministic behavior for a given configuration. While in theory functional, we do not advise to use any of the other fault models within NVBitFI, as we did not evaluate them in coexistance with the multi-sm failure
+
+### Use Cases
+
+This extension is intended for:
+- Reliability analysis of GPU kernels under correlated faults  
+- Evaluation of algorithmic resilience to systematic hardware errors  
+- Fault-tolerance research requiring consistent multi-SM fault models  
+
+### Compatibility and Setup
+
+The extension is fully compatible with the original NVBitFI interface and workflow. In addition to the original `simple_add` test module, we also provide the `nvbit_mm` test module, which makes use of the redundancy framework CUSPIS, which is preconfigured to run in the parameters. 
+
+
+
 # NVBitFI: An Architecture-level Fault Injection Tool for GPU Application Resilience Evaluations
 
 NVBitFI provides an automated framework to perform error injection campaigns for GPU application resilience evaluation.  NVBitFI builds on top of [**NV**IDIA **Bi**nary **I**nstrumentation **T**ool (NVBit)](https://github.com/NVlabs/NVbit), which is a research prototype of a dynamic binary instrumentation library for NVIDIA GPUs. NVBitFI offers functionality that is similar to a prior tool called [SASSIFI](https://github.com/NVlabs/sassifi).  
@@ -106,3 +138,4 @@ NVBitFI benefits from the featured offered by NVBit. It can run on newer GPUs (e
 # Contributing to NVBitFI
 
 If you are interested in contributing to NVBitFI, please initialize a [Pull Request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) and complete the [Contributor License Agreement](https://www.apache.org/licenses/icla.pdf).
+
